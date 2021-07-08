@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mood tracker :)</title>
+	<style>
+		#container {
+			width: 1000px;
+			height: 1000px;
+			margin: auto;
+			text-align: center;
+		}
+
+		.happy {
+			width: 100%;
+			height: 100%;
+			background: url('happy.jpg') no-repeat;
+			margin: auto;
+		}
+
+		.sad {
+			width: 100%;
+			height: 100%;
+			background: url('sad.jpg') no-repeat;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<h1>Click on the octopus to change mood :)</h1>
+		<div id="octopus" class="happy"></div>
+	</div>
+	<script>
+		var mood = document.getElementById('octopus');
+
+		mood.addEventListener('click', function(mood){
+			mood.target.classList.toggle('sad');
+		})
+	</script>
+</body>
+</html>
