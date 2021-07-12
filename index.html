@@ -1,72 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script>
-		if (counterElement % 2 == 0) {
-				document.getElementById('octopus').setAttribute("class", "happy")
-			} else if (counterElement % 2 != 0) {
-				document.getElementById('octopus').setAttribute("class", "sad")
-			}
-	</script>
-	<title>Mood tracker :)</title>
-	<style>
-		#container {
-			width: 1000px;
-			height: 1000px;
-			margin: auto;
-			text-align: center;
-		}
+  <meta charset="UTF-8">
+  <title>mood tracker</title>
+  <style>
+      h1, p {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-		#octopus {
-			width: 100%;
-			height: 100%;
-			margin: auto;
-		}
-		.happy {
-			background: url('happy.jpg') no-repeat;
-		}
-
-		.sad {
-			background: url('sad.jpg') no-repeat;
-		}
-	</style>
+      h1 {
+          font-size: xx-large;
+      }
+      p {
+          font-size: larger;
+      }
+      #container {
+          margin: auto;
+          align-items: center;
+          width: 864px;
+          height: 661px;
+      }
+      #Octopus {
+          height: 100%;
+          width: 100%;  
+      }
+      #moodStatus {
+          display: none;
+      }
+      .happy {
+          background-image: url("happy.jpg");
+          background-size: contain;
+      }
+      .sad {
+          background-image: url("sad.jpg");
+          background-size: contain;
+      }
+  </style>
 </head>
 <body>
-	<div id="container" >
-		<h1>Click on the octopus to change mood :)</h1>
-		<div id="octopus" onclick="incrementCounter()"></div>
-		<div class="count"></div>
-	</div>
-	
-	<script>
-		var initcounterElement = document.getElementsByClassName('count')[0];
-		var counterElement = document.getElementsByClassName('count')[0];
-		window.onload = function updateCounter() {
-			fetch('https://api.countapi.xyz/get/bubs/bubby/')
-			.then(res => res.json())
-			.then(data => counterElement.innerHTML = data.value);
-			initialMood();
-		}
-
-		function initialMood() {
-			var num = parseInt(document.getElementsByClassName('count').innerHTML);
-			if ((num % 2) === 0) {
-				document.getElementById("octopus").setAttribute('class', 'sad');
-			} else {
-				document.getElementById("octopus").setAttribute('class', 'happy');
-			}
-		}
-	
-		function incrementCounter() {
-			fetch('https://api.countapi.xyz/hit/bubs/bubby/')
-			.then(res => res.json())
-			.then(data => counterElement.innerHTML = data.value);
-			if (counterElement.innerHTML % 2 == 0) {
-				document.getElementById('octopus').setAttribute('class', 'sad');
-			} else {
-				document.getElementById('octopus').setAttribute('class', 'happy');
-			}
-		}
-	</script>
+    <div id="container">
+        <h1>Bubby Mood Tracker :)</h1>
+        <p>Click the Octopus to switch moods :)</p>
+        <div id="Octopus" onclick="set()"></div>
+        <p>Due to excessive mood swings, I thought it would be good to keep track of your mood. Also because you never tell me why ur mad so I thought maybe this way you can me without telling me, hehe. I couldn't give you one of these irl so I made one for you. Hope you enjoy :)</p>
+        <div id="moodStatus"></div>
+    </div>
 </body>
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+
+<script src="index.js"></script>
 </html>
